@@ -8,10 +8,13 @@ RUN python3 -m pip install --upgrade pip setuptools wheel
 
 WORKDIR /app
 
-COPY requirements.txt /app/requirements.txt
+RUN python3 -m venv .env
 
-RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 --break-system-packages
-RUN pip install --no-cache-dir -r requirements.txt --break-system-packages
+ENV VIRTUAL_ENV=/app/.env
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+COPY requirements.txt /app/requirements.txt
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
 RUN pip install --no-cache-dir --force-reinstall \
     git+https://github.com/facebookresearch/xformers.git@main#egg=xformers
