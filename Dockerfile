@@ -10,8 +10,8 @@ WORKDIR /app
 
 COPY requirements.txt /app/requirements.txt
 
-RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 --break-system-packages
+RUN pip install --no-cache-dir -r requirements.txt --break-system-packages
 
 RUN pip install --no-cache-dir --force-reinstall \
     git+https://github.com/facebookresearch/xformers.git@main#egg=xformers
