@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.1.105-devel-ubuntu22.04
+FROM nvidia/cuda:13.0.0-cudnn-devel-ubuntu24.04
 
 RUN apt-get update && apt-get install -y \
     python3 python3-pip python3-venv git curl build-essential cmake libglib2.0-0 libsm6 libxext6 libxrender-dev \
